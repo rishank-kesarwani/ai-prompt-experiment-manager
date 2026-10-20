@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Background Rounded Hexagon / Card -->
+  <rect x="4" y="4" width="40" height="40" rx="10" fill="#0f172a" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+  <!-- Dynamic Prompt / Terminal Bracket -->
+  <path d="M14 17L20 23L14 29" stroke="url(#primaryGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Release / Experiment Split Arrows -->
+  <path d="M24 31H34" stroke="url(#accentGrad)" stroke-width="3" stroke-linecap="round" />
+  <circle cx="28" cy="18" r="3.5" fill="url(#primaryGrad)" filter="url(#glow)" />
+  <circle cx="36" cy="18" r="3.5" fill="url(#accentGrad)" filter="url(#glow)" />
+  <path d="M28 21.5V25C28 27.5 34 27.5 34 30" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 2" />
+</svg>

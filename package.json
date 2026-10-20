@@ -1,0 +1,33 @@
+{
+  "name": "ai-prompt-experiment-manager",
+  "version": "1.0.0",
+  "description": "Full-stack platform for prompt version management, controlled experiments, evaluation gates, and staged AI releases.",
+  "private": true,
+  "scripts": {
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "test:backend": "npm --prefix backend test",
+    "test:frontend": "npm --prefix frontend test",
+    "test": "npm --prefix backend test && npm --prefix frontend test",
+    "lint:backend": "npm --prefix backend run lint",
+    "lint:frontend": "npm --prefix frontend run lint",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "start:backend": "npm --prefix backend run start:dev",
+    "start:frontend": "npm --prefix frontend run dev"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "prompt-versioning",
+    "ab-testing",
+    "controlled-experiments",
+    "evaluation-gates",
+    "staged-releases",
+    "canary-rollout",
+    "model-regression",
+    "nestjs",
+    "nextjs"
+  ],
+  "author": "Rishank Kesarwani",
+  "license": "UNLICENSED"
+}

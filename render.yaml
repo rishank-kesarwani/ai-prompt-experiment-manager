@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: ai-prompt-experiment-manager-backend
+    env: node
+    plan: standard
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /health
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - backend/**
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: API_PREFIX
+        value: api/v1
+      - key: PUBLIC_ACCESS_ENABLED
+        value: "true"
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: DEFAULT_TENANT_ID
+        value: tenant-enterprise-default
+      - key: JWT_SECRET
+        generateValue: true
+      - key: API_KEY
+        generateValue: true
+      - key: AI_PLATFORM_URL
+        value: https://ai-platform.onrender.com
+      - key: AI_PLATFORM_API_KEY
+        sync: false
+      - key: MODEL_REGRESSION_SERVICE_URL
+        value: https://ai-model-regression-detection.onrender.com
+      - key: MODEL_REGRESSION_SERVICE_API_KEY
+        sync: false
+      - key: NOTIFICATION_SERVICE_URL
+        value: https://notification-service.onrender.com
+      - key: NOTIFICATION_SERVICE_API_KEY
+        sync: false
