@@ -14,7 +14,6 @@ import {
   X,
   Shield,
   Building2,
-  Sparkles,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import {
@@ -48,7 +47,6 @@ export const Navbar: React.FC = () => {
   const handleRoleChange = (role: UserRole) => {
     setActiveRole(role);
     setSessionRole(role);
-    // Reload to refresh permissions context
     window.location.reload();
   };
 
@@ -61,14 +59,14 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-surface-200/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Brand Logo & Title */}
-          <Link href="/" className="hover:opacity-90 transition flex items-center">
+        <div className="flex items-center justify-between h-16 gap-3 lg:gap-4">
+          {/* Brand Logo & Title (shrink-0 ensures it never squashes and never overlaps nav) */}
+          <Link href="/" className="shrink-0 flex items-center hover:opacity-90 transition mr-1 lg:mr-2">
             <Logo size="sm" />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1 shrink-0">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive =
@@ -80,13 +78,13 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 ${
                     isActive
                       ? 'bg-violet-600/20 text-violet-300 border border-violet-500/30 shadow-sm'
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -94,14 +92,15 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Tenant & Role Switchers */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 shrink-0 ml-auto">
             {/* Tenant Selector */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-100 border border-white/10 text-xs text-slate-300">
-              <Building2 className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-surface-100 border border-white/10 text-xs text-slate-300">
+              <Building2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
               <select
                 value={activeTenant}
                 onChange={(e) => handleTenantChange(e.target.value)}
-                className="bg-transparent text-slate-200 font-medium focus:outline-none cursor-pointer"
+                className="bg-transparent text-slate-200 font-medium focus:outline-none cursor-pointer max-w-[125px] xl:max-w-none truncate"
+                aria-label="Active Tenant"
               >
                 <option value="tenant-enterprise-default" className="bg-slate-900 text-white">
                   tenant-enterprise-default
@@ -116,12 +115,13 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* Operator Role Selector */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-100 border border-white/10 text-xs text-slate-300">
-              <Shield className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-surface-100 border border-white/10 text-xs text-slate-300">
+              <Shield className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <select
                 value={activeRole}
                 onChange={(e) => handleRoleChange(e.target.value as UserRole)}
-                className="bg-transparent font-medium text-slate-200 focus:outline-none cursor-pointer"
+                className="bg-transparent font-medium text-slate-200 focus:outline-none cursor-pointer max-w-[110px] xl:max-w-none truncate"
+                aria-label="Operator Role"
               >
                 <option value="approver" className="bg-slate-900 text-white">
                   Approver (Full Release Control)
@@ -136,14 +136,14 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* Live Telemetry Status Pill */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-400">
+            <div className="hidden 2xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-400 shrink-0">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Production Ready</span>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center">
+          <div className="flex lg:hidden items-center ml-auto">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 focus:outline-none"
@@ -177,7 +177,7 @@ export const Navbar: React.FC = () => {
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-5 h-5 shrink-0" />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -194,6 +194,7 @@ export const Navbar: React.FC = () => {
                 value={activeTenant}
                 onChange={(e) => handleTenantChange(e.target.value)}
                 className="w-full bg-surface-100 border border-white/10 rounded-lg px-3 py-2 text-xs text-white"
+                aria-label="Mobile Active Tenant"
               >
                 <option value="tenant-enterprise-default">tenant-enterprise-default</option>
                 <option value="tenant-fintech-prod">tenant-fintech-prod</option>
@@ -209,6 +210,7 @@ export const Navbar: React.FC = () => {
                 value={activeRole}
                 onChange={(e) => handleRoleChange(e.target.value as UserRole)}
                 className="w-full bg-surface-100 border border-white/10 rounded-lg px-3 py-2 text-xs text-white"
+                aria-label="Mobile Operator Role Context"
               >
                 <option value="approver">Approver (Full Release Control)</option>
                 <option value="editor">Editor (Drafts & Evals)</option>

@@ -150,13 +150,15 @@ export default function ExperimentsPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
       {/* Header with Logo */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
-        <div className="flex items-center gap-3">
-          <Logo size="md" showText={false} />
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
+        <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+          <div className="shrink-0 mt-1 sm:mt-0">
+            <Logo size="md" showText={false} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
               Controlled A/B Experiments
             </h1>
-            <p className="text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
               Run randomized, deterministic bucketing experiments to evaluate candidate prompts against control baselines.
             </p>
           </div>

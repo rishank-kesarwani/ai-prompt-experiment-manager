@@ -99,22 +99,22 @@ export default function OverviewDashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
       {/* Page Title with Brand Logo */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
-        <div className="space-y-1">
-          <div className="flex items-center gap-3">
+        <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+          <div className="shrink-0 mt-1 sm:mt-0">
             <Logo size="md" showText={false} />
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
-                Prompt Release & Experimentation Console
-              </h1>
-              <p className="text-sm text-slate-400">
-                Audit immutable prompt versions, enforce fail-closed quality gates, and conduct controlled A/B rollouts.
-              </p>
-            </div>
+          </div>
+          <div className="min-w-0 flex-1">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
+              Prompt Release & Experimentation Console
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              Audit immutable prompt versions, enforce fail-closed quality gates, and conduct controlled A/B rollouts.
+            </p>
           </div>
         </div>
 
         {/* Quick Action Buttons */}
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
           <Link
             href="/prompts"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-100 hover:bg-surface-hover border border-white/10 text-xs font-medium text-slate-200 transition"

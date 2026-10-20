@@ -269,14 +269,16 @@ export default function PromptDetailPage() {
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Logo size="md" showText={false} />
-            <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+            <div className="shrink-0 mt-1 sm:mt-0">
+              <Logo size="md" showText={false} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
                   {prompt.name}
                 </h1>
-                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 shrink-0">
                   {prompt.id}
                 </span>
               </div>
