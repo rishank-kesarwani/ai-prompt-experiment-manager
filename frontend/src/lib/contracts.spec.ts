@@ -31,4 +31,24 @@ describe('Frontend Session & API Contracts', () => {
     expect(validGates).toContain('PASS');
     expect(validGates).toContain('FAIL');
   });
+
+  it('validates Vercel image optimization guardrail contracts', () => {
+    const nextConfig = require('../../next.config.js');
+    expect(nextConfig.images).toBeDefined();
+
+    // Standardized to single modern WebP format (avoids duplicate AVIF/WebP variants)
+    expect(nextConfig.images.formats).toEqual(['image/webp']);
+
+    // Minimum edge cache TTL configured to 31 days to maximize hit ratios
+    expect(nextConfig.images.minimumCacheTTL).toBe(2678400);
+
+    // deviceSizes trimmed to avoid redundant legacy widths (750, 828)
+    expect(nextConfig.images.deviceSizes).toEqual([640, 768, 1080, 1920]);
+
+    // SVGs must never be optimized via Vercel optimizer
+    expect(nextConfig.images.dangerouslyAllowSVG).toBe(false);
+
+    // Headers configured for static asset edge/browser caching
+    expect(typeof nextConfig.headers).toBe('function');
+  });
 });

@@ -7,8 +7,11 @@ export const metadata: Metadata = {
   description:
     'Full-stack platform for immutable prompt version management, deterministic A/B testing, offline evaluation runners, quality gates, and staged AI releases.',
   icons: {
-    icon: '/logo.svg',
-    shortcut: '/logo.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/logo.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
     apple: '/logo.svg',
   },
 };

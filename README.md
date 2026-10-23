@@ -239,3 +239,24 @@ Every endpoint includes full mobile layout adaptations:
 - Responsive data cards with auto-overflow and horizontal touch-scroll on metrics tables.
 - Touch-friendly traffic split and staged rollout sliders.
 - Floating brand identity logo in Navbar and all page headers.
+
+---
+
+## ⚡ Vercel Image Optimization & Performance Architecture
+
+To operate efficiently within Vercel's included **5,000 transformation/month** tier without risking broken images or unexpected transformation overages:
+
+1. **Zero-Transformation Static Serving**:
+   - Vector SVGs (`/logo.svg`, `/icon.svg`) bypass Vercel's `/_next/image` rasterizer via `unoptimized: true`, serving directly from Vercel's global CDN edge.
+   - Eliminates 100% of transformation consumption on brand logos across all viewport and resolution combinations (1x, 2x, 3x).
+2. **Compiler & Configuration Guardrails**:
+   - `next.config.js` enforces `dangerouslyAllowSVG: false`, preventing accidental rasterization of vector graphics.
+   - Device breakpoints are pruned to `[640, 768, 1080, 1920]` (matching Tailwind CSS layout breakpoints) and formats are standardized to `['image/webp']` to avoid generating redundant AVIF and WebP permutations.
+3. **Resilient Error Fallbacks**:
+   - `Logo.tsx` features an inline vector fallback so users never see a broken image icon even during CDN or quota failures.
+   - Enterprise `<OptimizedImage />` component provides automatic SVG/icon bypass, CLS protection, and failover placeholders.
+4. **Edge & Browser Caching**:
+   - Public assets are served with `Cache-Control: public, max-age=86400, stale-while-revalidate=604800` and `minimumCacheTTL: 2678400` (31 days).
+
+For detailed engineering decisions and guidelines on adding new assets, refer to the [Image Optimization Guide](docs/IMAGE_OPTIMIZATION.md).
+
